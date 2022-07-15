@@ -16,10 +16,20 @@ public class GameService {
 	 */
 	private static List<Game> games = new ArrayList<Game>();
 
-	/*
+	/**
 	 * Holds the next game identifier
 	 */
 	private static long nextGameId = 1;
+	/**
+	 * Holds the next team identifier
+	 */
+	private static long nextTeamId = 0;
+
+	/**
+	 * Holds the next player identifier
+	 */
+	private static long nextPlayerId = 0;
+
 
 	// FIXME: Add missing pieces to turn this class a singleton
 	/*
@@ -28,20 +38,20 @@ public class GameService {
 	* */
 	// create a GameService object
 	// that way this class holds the only instantiation of this object
-	public static GameService gameService = new GameService();
+	public static GameService service = new GameService();
 
 	// make a private constructor so GameService object cannot be instantiated again
 	private GameService() {}
 
 	// public method to grab the only instance of GameService object
 	// Other methods can access the instantiated object but can't create a new one
-	public static GameService getGameService() {
-		return gameService;
+	public static GameService getInstance() {
+		return service;
 	}
 
 	/**
 	 * Construct a new game instance
-	 * 
+	 *
 	 * @param name the unique name of the game
 	 * @return the game instance (new or existing)
 	 */
@@ -91,10 +101,10 @@ public class GameService {
 	Game getGame(int index) {
 		return games.get(index);
 	}
-	
+
 	/**
 	 * Returns the game instance with the specified id.
-	 * 
+	 *
 	 * @param id unique identifier of game to search for
 	 * @return requested game instance
 	 */
@@ -126,7 +136,7 @@ public class GameService {
 
 	/**
 	 * Returns the game instance with the specified name.
-	 * 
+	 *
 	 * @param name unique name of game to search for
 	 * @return requested game instance
 	 */
@@ -158,10 +168,19 @@ public class GameService {
 
 	/**
 	 * Returns the number of games currently active
-	 * 
+	 *
 	 * @return the number of games currently active
 	 */
 	public int getGameCount() {
 		return games.size();
+	}
+	public long getNextTeamId() {
+		// return next team id and increment each time it is called
+		// since no setter is specified in the UML we'll set the next team id here after it is called
+		return nextTeamId++;
+	}
+
+	public long getNextPlayerId() {
+		return nextPlayerId++;
 	}
 }

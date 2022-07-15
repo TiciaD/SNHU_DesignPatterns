@@ -12,7 +12,7 @@ public class SingletonTester {
 		System.out.println("\nAbout to test the singleton...");
 		
 		// FIXME: obtain local reference to the singleton instance
-		GameService service = GameService.getGameService(); // replace null with the method to get the only instance of GameService
+		GameService service = GameService.getInstance(); // replace null with the method to get the only instance of GameService
 		
 		// a simple for loop to print the games
 		for (int i = 0; i < service.getGameCount(); i++) {
